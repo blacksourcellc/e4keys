@@ -1,0 +1,22 @@
+{
+  "name": "keys-master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "keys.js",
+  "scripts": {
+    "getkeys": "node keys.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blacksourcellc/somethingkeylike.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blacksourcellc/somethingkeylike/issues"
+  },
+  "homepage": "https://github.com/blacksourcellc/somethingkeylike#readme",
+  "dependencies": {
+    "axios": "^1.6.7"
+  }
+}
