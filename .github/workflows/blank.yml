@@ -15,7 +15,8 @@ jobs:
 
     - name: Fetch keys from API and format
       run: |
-        curl -s https://keys4.fun/ | jq '[.rabbitstream.keys[] | [.[]]]' > keys
+        curl -s https://keys4.fun/ | jq '.rabbitstream.keys | map(select(type == "array")) | map(.[]) | [.[]]' > keys
+
         
     - name: Commit changes
       run: |
