@@ -10,16 +10,17 @@ axios.get(apiUrl)
         // Extract keys from the "rabbitstream" section
         const rabbitstreamKeys = response.data.rabbitstream.keys;
 
-        // Format the keys into pairs
+        // Format the keys into pairs with a space between each item
         const formattedKeys = [];
         for (let i = 0; i < rabbitstreamKeys.length; i += 2) {
+            // Push the key pairs without quotes, each key pair represented as a string
             formattedKeys.push([rabbitstreamKeys[i], rabbitstreamKeys[i + 1]]);
         }
 
         // Write the formatted keys to a file
-        fs.writeFileSync('keys.json', JSON.stringify(formattedKeys));
+        fs.writeFileSync('keys', JSON.stringify(formattedKeys));
 
-        console.log('Keys extracted and saved to keys.json');
+        console.log('Keys extracted and saved to keys');
         console.log(formattedKeys);
         console.log(JSON.stringify(formattedKeys));
         // Push changes to keys branch
