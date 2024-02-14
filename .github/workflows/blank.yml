@@ -20,8 +20,9 @@ jobs:
         
     - name: Commit changes
       run: |
-        git config --global user.email "blacksourcellc@gmail.com"
-        git config --global user.name "blacksourcellc"
-        git add keys
-        git commit -m "Update and format Rabbitstream keys from API"
-        git push origin main
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git onfig --local user.name "github-actions[bot]"
+        git add key
+        git commit --amend -m "chore: Updating key"
+        git push --force
+  
