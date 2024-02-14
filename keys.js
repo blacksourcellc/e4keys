@@ -17,9 +17,23 @@ axios.get(apiUrl)
         }
 
         // Write the formatted keys to a file
-        fs.writeFileSync('keys', JSON.stringify(formattedKeys, null, 2));
+        fs.writeFileSync('keys.json', JSON.stringify(formattedKeys, null, 2));
 
-        console.log('Keys extracted and saved to keys');
+        console.log('Keys extracted and saved to keys.json');
+
+        // Push changes to keys branch
+        const simpleGit = require('simple-git')();
+        simpleGit.checkout('keys', (err) => {
+            if (!err) {
+                simpleGit.add('.')
+                    .commit('Update keys')
+                    .push(['-u', 'origin', 'keys'], () => {
+                        console.log('Keys pushed to keys branch');
+                    });
+            } else {
+                console.error('Error checking out keys branch:', err);
+            }
+        });
     })
     .catch(error => {
         console.error('Error fetching or processing data:', error.message);
