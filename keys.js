@@ -17,10 +17,11 @@ axios.get(apiUrl)
         }
 
         // Write the formatted keys to a file
-        fs.writeFileSync('keys.json', JSON.stringify(formattedKeys, null, 2));
+        fs.writeFileSync('keys.json', JSON.stringify(formattedKeys));
 
         console.log('Keys extracted and saved to keys.json');
-
+        console.log(formattedKeys);
+        console.log(JSON.stringify(formattedKeys));
         // Push changes to keys branch
         const simpleGit = require('simple-git')();
         simpleGit.checkout('keys', (err) => {
