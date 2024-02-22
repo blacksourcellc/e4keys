@@ -35,10 +35,10 @@ jobs:
           ref: appkeys
           path: appkeys_repo
 
-      - name: Update key if it differs
+      - name: Update key.txt if it differs
         run: |
           file=keys.txt
-          cd key_repo
+          cd appkeys_repo
           echo "Old -> $(cat $file) || New -> $(cat ../$file)"
           if [[ "$(cat $file)" != "$(cat ../$file)" ]]; then
             cp ../$file .
