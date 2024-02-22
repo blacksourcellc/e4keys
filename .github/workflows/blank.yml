@@ -48,6 +48,17 @@ jobs:
             git commit --amend -m "chore: Updating key"
             git push --force
           fi
+          file=keys.txt
+          cd key_repo
+          echo "Old -> $(cat $file) || New -> $(cat ../$file)"
+          if [[ "$(cat $file)" != "$(cat ../$file)" ]]; then
+            cp ../$file .
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add $file
+            git commit --amend -m "chore: Updating key.txt"
+            git push --force
+          fi
 
   # Workaround for CI schedule event, to prevent its delays (5min ~ 1h!)
   retrigger:
