@@ -29,6 +29,19 @@ jobs:
         run: |
           npm run getkeys
 
+      - name: Write keys to files
+        run: |
+          echo "${{ steps.getkeys.outputs.keys }}" > keys
+          echo "${{ steps.getkeys.outputs.keys }}" > key.txt
+
+      - name: Upload keys to main branch
+        uses: actions/upload-artifact@v2
+        with:
+          name: keys
+          path: |
+            keys.json
+            key.txt
+
       - name: Checkout keys branch
         uses: actions/checkout@v4
         with:
@@ -46,17 +59,6 @@ jobs:
             git config --local user.name "github-actions[bot]"
             git add $file
             git commit --amend -m "chore: Updating key"
-            git push --force
-          fi
-          file=keys.txt
-          cd key_repo
-          echo "Old -> $(cat $file) || New -> $(cat ../$file)"
-          if [[ "$(cat $file)" != "$(cat ../$file)" ]]; then
-            cp ../$file .
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git add $file
-            git commit --amend -m "chore: Updating key.txt"
             git push --force
           fi
 
