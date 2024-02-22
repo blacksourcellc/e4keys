@@ -5,7 +5,7 @@ on:
 
 jobs:
   update:
-    name: Update keys
+    name: Update keys.txt
     permissions:
       contents: write
 
@@ -37,7 +37,7 @@ jobs:
 
       - name: Update key.txt if it differs
         run: |
-          file=keys.txt
+          file=key.txt
           cd appkeys_repo
           echo "Old -> $(cat $file) || New -> $(cat ../$file)"
           if [[ "$(cat $file)" != "$(cat ../$file)" ]]; then
@@ -64,7 +64,7 @@ jobs:
       - name: Retrigger workflow
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: Update keys
+          workflow: Update keys.txt
           token: '${{ secrets.PAT_GITHUB }}'
           retain_days: 0
           keep_minimum_runs: 10
