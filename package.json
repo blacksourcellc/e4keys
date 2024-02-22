@@ -4,7 +4,8 @@
   "description": "",
   "main": "keys.js",
   "scripts": {
-    "getkeys": "node keys.js"
+    "getkeys": "node keys.js",
+    "getkeys2": "node keys2.js"
   },
   "repository": {
     "type": "git",

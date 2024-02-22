@@ -17,15 +17,23 @@ axios.get(apiUrl)
             formattedKeys.push([rabbitstreamKeys[i], rabbitstreamKeys[i + 1]]);
         }
 
-        // Write the formatted keys to a file
-        fs.writeFileSync('keys', JSON.stringify(formattedKeys));
+        // Format the keys into one long string
+        const longStringKeys = rabbitstreamKeys.join(',');
 
-        console.log('Keys extracted and saved to keys');
-        console.log(formattedKeys);
-        console.log(JSON.stringify(formattedKeys));
+        // Write the formatted keys to a file
+       // fs.writeFileSync('keys', JSON.stringify(formattedKeys));
+
+       // Write the long string keys to another file with square brackets
+fs.writeFileSync('key.txt', '[' + longStringKeys.replace(/\"/g, '') + ']');
+
+        console.log('Keys extracted and saved to key.txt');
+       // console.log('Formatted keys:', formattedKeys);
+        console.log('Long string keys:', '[' + longStringKeys.replace(/\"/g, '') + ']');
+
+
         // Push changes to keys branch
         const simpleGit = require('simple-git')();
-        simpleGit.checkout('keys', (err) => {
+        simpleGit.checkout('keys.txt', (err) => {
             if (!err) {
                 simpleGit.add('.')
                     .commit('Update keys')
