@@ -29,19 +29,6 @@ jobs:
         run: |
           npm run getkeys
 
-      - name: Write keys to files
-        run: |
-          echo "${{ steps.getkeys.outputs.keys }}" > keys
-          echo "${{ steps.getkeys.outputs.keys }}" > key.txt
-
-      - name: Upload keys to main branch
-        uses: actions/upload-artifact@v2
-        with:
-          name: keys
-          path: |
-            keys.json
-            key.txt
-
       - name: Checkout keys branch
         uses: actions/checkout@v4
         with:
